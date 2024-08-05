@@ -11,7 +11,7 @@ def main():
     data = load_json_file(dummy_data_dir)
     if data:
         concurrency_manager = ConcurrencyManager()
-        concurrency_manager.thread_data_to_datastore(data)
+        concurrency_manager.replicate_distribution_system_concurrency(data, concurrency_manager.completion_callback)
 
 
 if __name__ == '__main__':

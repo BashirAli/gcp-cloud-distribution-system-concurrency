@@ -16,7 +16,7 @@ class ConcurrencyManager:
         threads = []
         for entity in data:
             thread = threading.Thread(target=self._ds_client.upsert_if_data_is_newer, args=(
-                entity['entity_id'], entity['ingestion_timestamp'], entity['value'], callback))
+                entity, callback))
             threads.append(thread)
             thread.start()
 
@@ -24,8 +24,8 @@ class ConcurrencyManager:
             thread.join()
 
     @staticmethod
-    def completion_callback(entity_id: str, success: bool, error: str):
+    def completion_callback(entity: dict, success: bool, error: str):
         if success:
-            logger.info(f"Successfully processed entity {entity_id}.")
+            logger.info(f"Successfully processed entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}.")
         else:
-            logger.warning(f"Failed to process entity {entity_id}. Error: {error}")
+            logger.warning(f"Failed to process entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}. Error: {error}")

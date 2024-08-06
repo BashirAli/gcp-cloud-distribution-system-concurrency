@@ -1,0 +1,202 @@
+[
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-04T12:34:56",
+        "value": "XxJsdJna"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-04T14:25:32",
+        "value": "MkLjklPn"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-04T16:45:22",
+        "value": "AsdVfrTr"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-04T18:12:45",
+        "value": "PrQiOz"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-04T20:50:10",
+        "value": "YtUiOkL"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-04T23:01:29",
+        "value": "QwErTy"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T00:15:34",
+        "value": "JkLuIoP"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T02:09:27",
+        "value": "AbCdEf"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-05T03:23:56",
+        "value": "QwErTy"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-05T04:45:23",
+        "value": "GhIjKl"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T06:32:18",
+        "value": "VbNmKl"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T08:14:55",
+        "value": "PoIuYt"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-05T10:25:10",
+        "value": "ZaQwXs"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-05T11:35:47",
+        "value": "RnVbGt"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T09:12:39",
+        "value": "ErTyUi"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T07:48:05",
+        "value": "MiLoPq"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-05T05:59:12",
+        "value": "AzSwDf"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-05T01:23:45",
+        "value": "MkLpNb"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T03:30:12",
+        "value": "YhNjKm"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T02:15:59",
+        "value": "LpNbCv"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-04T13:23:45",
+        "value": "FgHiJkL"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-04T15:12:34",
+        "value": "XzVcBbN"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-04T17:54:23",
+        "value": "OlPqRt"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-04T19:30:15",
+        "value": "QwErTy"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-04T21:45:10",
+        "value": "JkLmNp"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-05T00:20:30",
+        "value": "UiOpLp"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T02:14:25",
+        "value": "YhIkUl"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T04:10:50",
+        "value": "NbVfDr"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-05T06:05:43",
+        "value": "CzXvBn"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-05T07:59:59",
+        "value": "QwErYt"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T09:48:23",
+        "value": "PoJkIi"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T11:15:34",
+        "value": "LtUfGi"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-05T12:01:22",
+        "value": "DfGhJk"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-04T14:34:18",
+        "value": "AzWsXc"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-04T16:20:50",
+        "value": "RtGhIk"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-04T18:12:44",
+        "value": "BnVfRd"
+    },
+    {
+        "entity_id": "item_1",
+        "ingestion_timestamp": "2024-08-04T20:05:37",
+        "value": "PqWjQe"
+    },
+    {
+        "entity_id": "item_2",
+        "ingestion_timestamp": "2024-08-05T01:45:12",
+        "value": "YtRfCc"
+    },
+    {
+        "entity_id": "item_3",
+        "ingestion_timestamp": "2024-08-05T03:35:26",
+        "value": "MvGfTd"
+    },
+    {
+        "entity_id": "item_4",
+        "ingestion_timestamp": "2024-08-05T05:55:19",
+        "value": "OlNiUu"
+    }
+]

@@ -1,13 +1,21 @@
 import os
 import threading
-from storage.datastore import Datastore
+
 from model.logging import logger
+from storage.datastore import Datastore
+from utils.helpers import semaphore_lock
 
 
 class ConcurrencyManager:
     def __init__(self):
-        self._ds_client = Datastore(project_id=os.getenv("GCP_PROJECT_ID"), namespace=os.getenv("DATASTORE_NAMESPACE"), kind=os.getenv("DATASTORE_KIND"))
+        self._ds_client = Datastore(project_id=os.getenv("GCP_PROJECT_ID"), namespace=os.getenv("DATASTORE_NAMESPACE"),
+                                    kind=os.getenv("DATASTORE_KIND"))
         self.semaphore = threading.Semaphore(5)  # Allow up to 5 concurrent accesses
+
+        # Decorate the method with the semaphore lock
+        self._ds_client.upsert_if_data_is_newer = semaphore_lock(self.semaphore)(
+            self._ds_client.upsert_if_data_is_newer
+        )
 
     def replicate_distribution_system_concurrency(self, data: list, callback=None):
         """
@@ -26,6 +34,8 @@ class ConcurrencyManager:
     @staticmethod
     def completion_callback(entity: dict, success: bool, error: str):
         if success:
-            logger.info(f"Successfully processed entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}.")
+            logger.info(
+                f"Successfully processed entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}.")
         else:
-            logger.warning(f"Failed to process entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}. Error: {error}")
+            logger.warning(
+                f"Failed to process entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}. Error: {error}")

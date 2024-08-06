@@ -1,7 +1,8 @@
-from google.cloud import datastore
 from google.api_core.exceptions import BadRequest, ServiceUnavailable
-from utils.helpers import hash_datastore_key, is_stored_older_than_inbound_timestamp
+from google.cloud import datastore
+
 from model.logging import logger
+from utils.helpers import hash_datastore_key, is_stored_older_than_inbound_timestamp
 
 
 class Datastore:

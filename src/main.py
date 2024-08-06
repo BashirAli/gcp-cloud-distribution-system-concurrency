@@ -1,6 +1,7 @@
+from dotenv import load_dotenv
+
 from core.concurrency import ConcurrencyManager
 from utils.helpers import load_json_file
-from dotenv import load_dotenv
 
 # Load the .env file
 load_dotenv()

@@ -1,9 +1,11 @@
-import json
 import hashlib
-from model.logging import logger
+import json
+
 import pendulum
-from proto.datetime_helpers import DatetimeWithNanoseconds
 from pendulum.exceptions import ParserError
+from proto.datetime_helpers import DatetimeWithNanoseconds
+
+from model.logging import logger
 
 
 def load_json_file(file_path) -> list[dict] | list[None]:
@@ -43,3 +45,21 @@ def is_stored_older_than_inbound_timestamp(stored_timestamp: str, inbound_timest
         return stored_timestamp < inbound_timestamp
     except ParserError as pe:
         raise Exception(f"Something went wrong with parsing the timestamps: {pe}. Raising Error")
+
+
+def semaphore_lock(semaphore):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            # Acquire the semaphore before executing the function
+            semaphore.acquire()
+            try:
+                # Call the original function
+                result = func(*args, **kwargs)
+            finally:
+                # Always release the semaphore after the function call
+                semaphore.release()
+            return result
+
+        return wrapper
+
+    return decorator

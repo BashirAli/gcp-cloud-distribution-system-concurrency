@@ -52,12 +52,15 @@ def semaphore_lock(semaphore):
         def wrapper(*args, **kwargs):
             # Acquire the semaphore before executing the function
             semaphore.acquire()
+            logger.info(f"Acquired Semaphore for {func} with args/kwargs {args}, {kwargs}")
             try:
                 # Call the original function
                 result = func(*args, **kwargs)
             finally:
                 # Always release the semaphore after the function call
                 semaphore.release()
+                logger.info("Released Semaphore")
+
             return result
 
         return wrapper

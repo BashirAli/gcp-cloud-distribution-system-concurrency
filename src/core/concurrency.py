@@ -7,29 +7,26 @@ from utils.helpers import semaphore_lock
 
 
 class ConcurrencyManager:
+    semaphore = threading.Semaphore(5)
+
     def __init__(self):
         self._ds_client = Datastore(project_id=os.getenv("GCP_PROJECT_ID"), namespace=os.getenv("DATASTORE_NAMESPACE"),
                                     kind=os.getenv("DATASTORE_KIND"))
-        self.semaphore = threading.Semaphore(5)  # Allow up to 5 concurrent accesses
-
-        # Decorate the method with the semaphore lock
-        self._ds_client.upsert_if_data_is_newer = semaphore_lock(self.semaphore)(
-            self._ds_client.upsert_if_data_is_newer
-        )
 
     def replicate_distribution_system_concurrency(self, data: list, callback=None):
-        """
-        Uses threading to simulate concurrent processing, and executes a callback after each update.
-        """
         threads = []
         for entity in data:
-            thread = threading.Thread(target=self._ds_client.upsert_if_data_is_newer, args=(
-                entity, callback))
+            thread = threading.Thread(target=self._process_entity, args=(entity, callback))
             threads.append(thread)
             thread.start()
-
         for thread in threads:
             thread.join()
+
+    @semaphore_lock(semaphore=semaphore)
+    def _process_entity(self, entity: dict, callback):
+        success = self._ds_client.upsert_if_data_is_newer(entity)
+        if callback:
+            callback(entity, success, None if success else "Data is not newer or an error occurred")
 
     @staticmethod
     def completion_callback(entity: dict, success: bool, error: str):

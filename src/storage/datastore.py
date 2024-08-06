@@ -18,7 +18,7 @@ class Datastore:
             logger.error(f"Datastore Client retrieve entity error occurred: {err}")
             return None
 
-    def insert_entity_with_key(self, key: str, data: dict):
+    def insert_entity_with_key(self, key: str, data: dict) -> None:
         try:
             ds_key = self._ds_client.key(self.kind, key)
 
@@ -29,20 +29,23 @@ class Datastore:
         except (BadRequest | ServiceUnavailable) as err:
             logger.error(f"Datastore Client write to entity error occurred: {err}")
 
-    def upsert_if_data_is_newer(self, entity_dict: dict) -> None:
+    def upsert_if_data_is_newer(self, entity_dict: dict) -> bool:
         hashed_entity_id = hash_datastore_key(entity_dict["entity_id"])
+        try:
+            with self._ds_client.transaction():
+                entity = self.get_entity_with_key(hashed_entity_id)
+                if not entity:
+                    self.insert_entity_with_key(hashed_entity_id, entity_dict)
+                    return True
 
-        with self._ds_client.transaction():  # locking transaction so multiple threads do not overwrite each other
-            entity = self.get_entity_with_key(hashed_entity_id)
+                if is_stored_older_than_inbound_timestamp(stored_timestamp=entity["ingestion_timestamp"],
+                                                          inbound_timestamp=entity_dict["ingestion_timestamp"]):
+                    self.insert_entity_with_key(hashed_entity_id, entity_dict)
+                    return True
 
-            if not entity:
-                # write to datastore if it doesn't exist previously
-                self.insert_entity_with_key(hashed_entity_id, entity_dict)
-                return
+            return False
+        except Exception as e:
+            logger.error(f"Exception during upsert: {e}")
+            return False
 
-            if is_stored_older_than_inbound_timestamp(stored_timestamp=entity["ingestion_timestamp"],
-                                                      inbound_timestamp=entity_dict["ingestion_timestamp"]): # checking stored to see if data is stale or not
-                self.insert_entity_with_key(hashed_entity_id, entity_dict)
-
-# TODO - semaphore lock and acquire, callback
 

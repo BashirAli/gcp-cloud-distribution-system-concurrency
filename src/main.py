@@ -5,7 +5,7 @@ from utils.helpers import load_json_file
 
 # Load the .env file
 load_dotenv()
-dummy_data_dir = "data/dummy_datastore_entities.json"
+dummy_data_dir = "../data/dummy_datastore_entities.json"
 
 
 def main():

@@ -32,7 +32,7 @@ class ConcurrencyManager:
     def completion_callback(entity: dict, success: bool, error: str):
         if success:
             logger.info(
-                f"Successfully processed entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}.")
+                f"Successfully processed entity {entity["event_id"]} at ingestion timestamp {entity["event_timestamp"]}.")
         else:
             logger.warning(
-                f"Failed to process entity {entity["entity_id"]} at ingestion timestamp {entity["ingestion_timestamp"]}. Error: {error}")
+                f"Failed to process entity {entity["event_id"]} at ingestion timestamp {entity["event_timestamp"]}. Error: {error}")

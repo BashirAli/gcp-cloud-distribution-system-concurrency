@@ -30,17 +30,17 @@ class Datastore:
             logger.error(f"Datastore Client write to entity error occurred: {err}")
 
     def upsert_if_data_is_newer(self, entity_dict: dict) -> bool:
-        hashed_entity_id = hash_datastore_key(entity_dict["entity_id"])
+        hashed_event_id = hash_datastore_key(entity_dict["event_id"])
         try:
             with self._ds_client.transaction():
-                entity = self.get_entity_with_key(hashed_entity_id)
+                entity = self.get_entity_with_key(hashed_event_id)
                 if not entity:
-                    self.insert_entity_with_key(hashed_entity_id, entity_dict)
+                    self.insert_entity_with_key(hashed_event_id, entity_dict)
                     return True
 
-                if is_stored_older_than_inbound_timestamp(stored_timestamp=entity["ingestion_timestamp"],
-                                                          inbound_timestamp=entity_dict["ingestion_timestamp"]):
-                    self.insert_entity_with_key(hashed_entity_id, entity_dict)
+                if is_stored_older_than_inbound_timestamp(stored_timestamp=entity["event_timestamp"],
+                                                          inbound_timestamp=entity_dict["event_timestamp"]):
+                    self.insert_entity_with_key(hashed_event_id, entity_dict)
                     return True
 
             return False
